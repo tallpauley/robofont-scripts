@@ -38,6 +38,9 @@ def swap_glyph_from_head(font, glyph):
     # replace current glyph with version from git
     font[glyph.name] = glyph_head
     
+    # update UI
+    glyph.changed()
+    
     
 def restore_modified_glyph(font, glyph):
     """Replace a glyph with the copied "backup" version within the font
@@ -50,6 +53,9 @@ def restore_modified_glyph(font, glyph):
     # restore 
     font[glyph.name] = font[glyph.name + BACKUP_SUFFIX]
     font.removeGlyph(glyph.name + BACKUP_SUFFIX)
+    
+    # update UI
+    glyph.changed()
 
     
 def git_path(path):
